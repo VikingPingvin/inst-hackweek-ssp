@@ -42,9 +42,10 @@
     <div class="flex h-screen">
       <!-- Left Sidebar -->
       <div class="w-1/4 divide-y bg-gray-200">
-        <div class="columns-1 p-4">
+        <div class="columns-1 pl-4 py-4">
           <h2 class="mb-4 text-xl font-bold">APIs</h2>
-          <div id="apiList" hx-trigger="load" hx-get="/apiList"></div>
+          <div id="apiList" hx-trigger="load" hx-get="/apiList"
+          x-data="{activeButton: ''}"></div>
         </div>
       </div>
 
