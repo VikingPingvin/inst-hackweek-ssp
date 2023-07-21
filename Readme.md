@@ -15,5 +15,6 @@ A study project to demonstrate a partial set of usecases for the Instructure Api
 
 ### Features
 - Fetch list of available APIs on page load
-- Click event on API buttons to fetch that particular APIs data from DB
+- Click event on API buttons to fetch that particular APIs data from DB (local dummy data)
+- Use Alpine.Js to handle state
 - TODO: Detect unsaved changes in api config and disallow navigation

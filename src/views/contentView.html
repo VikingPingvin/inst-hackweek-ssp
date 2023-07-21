@@ -1,0 +1,61 @@
+<div class="relative w-full flex-col p-4" x-data="{ showModal: false}">
+    <div>
+        <span class="">API Configuration for</span>
+        <span class="text-blue-900 text-lg font-semibold "> {{.ApiName}}</span>
+    </div>
+    <div class="my-4">Some text content here</div>
+    <div class="tab-list" role="tablist">
+        <button hx-get="/tab1" class="selected" role="tab" aria-selected="false"
+            aria-controls="tab-content">Dev</button>
+        <button hx-get="/tab2" role="tab" aria-selected="false" aria-controls="tab-content">NonProd</button>
+        <button hx-get="/tab3" role="tab" aria-selected="false" aria-controls="tab-content">Production</button>
+    </div>
+    Api Version:
+    <select class="my-2 rounded border p-2">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+    </select>
+    <div>
+        API Settings
+        {{template "apiSetting/settings" .}}
+    </div>
+
+
+    <div class="py-5">
+        OpenAPI Specification:
+        {{template "apiSetting/openApiSpec" .}}
+    </div>
+
+    <div x-data="{ isGray: false }">
+        <!-- The parent div -->
+        <div x-bind:class="{'bg-gray-300': isGray}" class="p-4">
+            <!-- Button with HTMX click event to toggle the background color -->
+            <button @click="isGray = !isGray">Toggle Background Color</button>
+        </div>
+    </div>
+
+    <div>
+        <button class="m-1 rounded-2xl bg-green-400 px-4 py-2">Submit</button>
+    </div>
+
+    <!-- Hidden modal for unsaved changes warning -->
+    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-opacity-75 bg-gray-500 invisible"
+        x-show="false">
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Unsaved Changes</h2>
+            <p>Your changes have not been saved. Are you sure you want to navigate away from this page?</p>
+            <div class="mt-4 flex justify-end">
+                <button class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded-lg">
+                    Cancel
+                </button>
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+            // showModal= false;
+</script>

@@ -1,0 +1,49 @@
+{{define "apiSetting/settings"}}
+<div class="container mx-auto py-4">
+    <div class="rounded-lg bg-white p-4 shadow-md">
+        <div class="mb-4 flex items-center">
+            <div class="w-2/3">
+                <input type="text" placeholder="Search"
+                    class="w-full rounded-lg border px-4 py-2 focus:outline-none" />
+            </div>
+            <div class="w-1/3 text-right">
+                <button class="rounded-lg bg-blue-500 p-2 text-white hover:bg-blue-600">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="w-1/3 text-right">
+                <button class="rounded-lg bg-blue-800 px-4 py-2 text-white hover:bg-blue-600">
+                    Edit
+                </button>
+            </div>
+        </div>
+        <table class="w-full table-auto">
+            <thead>
+                <tr class="border-b border-gray-300">
+                    <th class="px-4 py-2 text-left">Name</th>
+                    <th class="px-4 py-2 text-left">Description</th>
+                    <th class="px-4 py-2 text-left">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-gray-300">
+                    <td class="px-4 py-2">Enabled</td>
+                    <td class="px-4 py-2">Turn On/Off Api proxy</td>
+                    <td class="w-1/2 right-6 px-4 py-2">{{template "sliderButton" .}}</td>
+                </tr>
+                <tr class="border-b border-gray-300">
+                    <td class="px-4 py-2">Target URL</td>
+                    <td class="px-4 py-2">The URL to forward the request to</td>
+                    <td class="w-1/2 right-6 px-4 py-2">{{.ApiConfiguration.TargetUrl}}</td>
+                </tr>
+                <tr class="border-b border-gray-300">
+                    <td class="px-4 py-2">Endpoint Path</td>
+                    <td class="px-4 py-2">The URL Path the Gateway listens on</td>
+                    <td class="w-1/2 right-6 px-4 py-2">{{.ApiConfiguration.EndPoint}}</td>
+                </tr>
+                <!-- Add more rows here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+{{end}}
