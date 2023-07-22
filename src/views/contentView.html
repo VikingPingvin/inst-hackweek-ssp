@@ -33,14 +33,15 @@
     <!-- Hidden modal for unsaved changes warning -->
     <div x-show="showModal">
         <div id="modal" class="fixed z-40 inset-0 flex items-center justify-center bg-opacity-75 bg-gray-500">
-            <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div @click.outside="showModal = false" class="bg-white p-8 rounded-lg shadow-lg">
                 <h2 class="text-xl font-semibold mb-4">Unsaved Changes</h2>
                 <p>Your changes have not been saved. Are you sure you want to navigate away from this page?</p>
                 <div class="mt-4 flex justify-end">
                     <button @click="showModal = false" class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded-lg">
                         Cancel
                     </button>
-                    <button @click="showModal = false; settingChanged = !settingChanged; canChangeApi = !canChangeApi" class="px-4 py-2 bg-blue-500 text-white rounded-lg">
+                    <button @click="showModal = false; settingChanged = !settingChanged; canChangeApi = !canChangeApi"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-lg">
                         Continue
                     </button>
                 </div>
@@ -51,5 +52,3 @@
         class="bg-green-500 m-2 p-2 rounded-sm">Toggle SettingChanged</button>
     <label x-text="settingChanged"></label>
 </div>
-<script>
-</script>
