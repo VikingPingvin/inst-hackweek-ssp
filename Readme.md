@@ -17,4 +17,6 @@ A study project to demonstrate a partial set of usecases for the Instructure Api
 - Fetch list of available APIs on page load
 - Click event on API buttons to fetch that particular APIs data from DB (local dummy data)
 - Use Alpine.Js to handle state
+- TODO: Use Go's embed.FS making the whole webapp a single binary, 
+no more bundling of random html or static etc... files
 - TODO: Detect unsaved changes in api config and disallow navigation

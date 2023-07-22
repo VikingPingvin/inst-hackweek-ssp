@@ -39,13 +39,12 @@
       </div>
     </div>
 
-    <div class="flex h-screen">
+    <div x-data="{canChangeApi: true, showModal: false}" class="flex h-screen">
       <!-- Left Sidebar -->
       <div class="w-1/4 divide-y bg-gray-200">
         <div class="columns-1 pl-4 py-4">
           <h2 class="mb-4 text-xl font-bold">APIs</h2>
-          <div id="apiList" hx-trigger="load" hx-get="/apiList"
-          x-data="{activeButton: ''}"></div>
+          <div id="apiList" hx-trigger="load" hx-get="/apiList" x-data="{activeButton: '', lastActiveButton: ''}"></div>
         </div>
       </div>
 
@@ -53,6 +52,12 @@
       <div id="mainContent" class="flex-1 p-4">
         <h1 class="mb-4 text-2xl font-bold">Content</h1>
       </div>
+      <script>
+        function triggerApiChangeEvent(event){
+          const triggerClickEvent = new CustomEvent('triggerClickEventFired', { detail: 'Event data' });
+          event.target.dispatchEvent(triggerClickEvent);
+        }
+      </script>
     </div>
   </div>
 </body>
