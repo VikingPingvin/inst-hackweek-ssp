@@ -1,0 +1,11 @@
+{{define "textValueView"}}
+<div x-data="{ disabled: true}"
+@editbutton-clicked-event.window="disabled = !disabled">
+    <template x-if="!disabled">
+        <input x-model="data" value="data" type="text" :id="$id(idTag)" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter value...">
+    </template>
+    <template x-if="disabled">
+        <p x-text="data" :id="$id(idTag)" class="text-sm text-gray-500 mt-2">Placeholder</p>
+    </template>
+</div>
+{{end}}

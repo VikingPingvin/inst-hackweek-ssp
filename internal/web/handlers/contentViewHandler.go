@@ -24,6 +24,7 @@ func HandleContentView(w http.ResponseWriter, r *http.Request) {
 
 	tmpl, err := template.ParseFiles("./src/views/contentView.html",
 		"./src/views/api-view/apiSettingComponent.html",
+		"./src/views/api-view/settingValueTextComponent.html",
 		"./src/views/api-view/openApiSpecComponent.html",
 		"./src/views/api-view/sliderButton.html")
 
