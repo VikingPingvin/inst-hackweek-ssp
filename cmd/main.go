@@ -15,7 +15,7 @@ func main() {
 	http.HandleFunc("/content", handlers.HandleContentView)
 
 	http.HandleFunc("/apiList", handlers.HandleApiList)
-	http.HandleFunc("/apiContent", handlers.HandleApiContent)
+	http.HandleFunc("/api/", handlers.HandleApiContent)
 
 	log.Println("Server starting on port 8080...")
 	log.Fatal(http.ListenAndServe("localhost:8080", nil))

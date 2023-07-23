@@ -27,7 +27,7 @@
     </div>
 
     <div>
-        <button class="m-1 rounded-2xl bg-green-400 px-4 py-2">Submit</button>
+        <button @click="$dispatch('submit-form')" class="m-1 rounded-2xl bg-green-400 px-4 py-2">Submit</button>
     </div>
 
     <!-- Hidden modal for unsaved changes warning -->

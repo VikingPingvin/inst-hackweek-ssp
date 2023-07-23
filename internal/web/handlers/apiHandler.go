@@ -15,7 +15,7 @@ var localDummyApiGetterFunc apiDataGetterFunc = func() []api.ApiData {
 		{
 			ApiID:   1,
 			ApiName: "My Api 1",
-			Message: "This is the content for API 1",
+			Message: "Please imagine this is 100s of lines of openapi spec schema \n",
 			ApiConfiguration: api.ApiConfiguration{
 				Enabled:   true,
 				TargetUrl: "http://localhost:8080",
@@ -25,7 +25,7 @@ var localDummyApiGetterFunc apiDataGetterFunc = func() []api.ApiData {
 		{
 			ApiID:   2,
 			ApiName: "Super API",
-			Message: "This is the content for API 2",
+			Message: "Totally an OpenAPI spec for API 2",
 			ApiConfiguration: api.ApiConfiguration{
 				Enabled:   false,
 				TargetUrl: "http://localhost:8081",
@@ -35,7 +35,7 @@ var localDummyApiGetterFunc apiDataGetterFunc = func() []api.ApiData {
 		{
 			ApiID:   3,
 			ApiName: "Animals API",
-			Message: "The Animals API provides interesting scientifc facts on thousands of different animal species.",
+			Message: "I'm not going to paste 100s of lines into dummy hardcoded strings....\nThe Animals API provides interesting scientifc facts on thousands of different animal species.",
 			ApiConfiguration: api.ApiConfiguration{
 				Enabled:   true,
 				TargetUrl: "https://api.api-ninjas.com/v1/animals",
@@ -82,4 +82,17 @@ func HandleApiList(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+}
+
+func HandleApiContent(w http.ResponseWriter, r *http.Request) {
+	apiId := r.URL.Path[len("/api/"):]
+	fmt.Printf("Handling API setting change for api-id: %s\n", apiId)
+
+	r.ParseForm()
+
+	for key, value := range r.Form {
+		fmt.Printf("   Key: %s, Value: %s\n", key, value)
+	}
+
+	w.WriteHeader(http.StatusOK)
 }

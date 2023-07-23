@@ -15,8 +15,8 @@
             </div>
         </div>
         <div id="tableDiv">
-            <form>
-                <table class="w-full table-auto">
+            <form id="tableForm" x-data hx-swap="none" hx-put="/api/{{.ApiID}}" hx-trigger="submit-form from:window">
+                <table name="table" class="w-full table-auto">
                     <thead>
                         <tr class="border-b border-gray-300">
                             <th class="px-4 py-2 text-left">Name</th>
@@ -28,7 +28,7 @@
                         <tr class="border-b border-gray-300" x-bind:class="{ 'hidden': !isRowMatching(search, 0) }">
                             <td class="px-4 py-2">Enabled</td>
                             <td class="px-4 py-2">Turn On/Off Api proxy</td>
-                            <td class="w-1/2 right-6 px-4 py-2">{{template "sliderButton" .}}</td>
+                            <td x-data="{idTag: 'enabled'}" class="w-1/2 right-6 px-4 py-2">{{template "sliderButton" .}}</td>
                         </tr>
                         <tr class="border-b border-gray-300" x-bind:class="{ 'hidden': !isRowMatching(search, 1) }">
                             <td class="px-4 py-2">Target URL</td>

@@ -14,5 +14,8 @@
             x-bind:checked="enabled ? 'value' : null"
             disabled/>
     </template>
+    <!-- Hidden input needed for FORM submit -->
+    <input
+        type="hidden" x-bind:name="idTag" x-model="enabled" >
 </div>
 {{end}}

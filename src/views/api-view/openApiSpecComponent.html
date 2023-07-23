@@ -1,8 +1,9 @@
 {{define "apiSetting/openApiSpec"}}
 <button class="rounded-md bg-gray-600 p-1 text-white">RAW</button>
-<textarea
-    @input="settingChanged = true"
-    class="my-2 h-48 w-full overflow-x-auto rounded border bg-gray-200 px-3 py-3 font-mono text-sm">
+<form id="tableForm2" x-data hx-swap="none" hx-put="/api/{{.ApiID}}" hx-trigger="submit-form from:window">
+    <textarea name="openapispec" @input="settingChanged = true"
+        class="my-2 h-48 w-full overflow-x-auto rounded border bg-gray-200 px-3 py-3 font-mono text-sm">
     {{.Message}}
 </textarea>
+</form>
 {{end}}

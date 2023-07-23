@@ -37,12 +37,9 @@ func HandleContentView(w http.ResponseWriter, r *http.Request) {
 	err = tmpl.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Failed to render template", http.StatusInternalServerError)
+		fmt.Printf("Error: %s\n", err.Error())
 		return
 	}
 }
 
-func HandleApiContent(w http.ResponseWriter, r *http.Request) {
-	// apiId := r.URL.Query().Get("apiId")
-	// env := r.URL.Query().Get("env")
-	// region := r.URL.Query().Get("region")
-}
+

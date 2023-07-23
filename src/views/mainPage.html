@@ -57,18 +57,6 @@
           const triggerClickEvent = new CustomEvent('triggerClickEventFired', { detail: 'Event data' });
           event.target.dispatchEvent(triggerClickEvent);
         }
-
-        // function toggleSettingsEdit(){
-        //   const editButtonEvent = new CustomEvent('editbutton-clicked-event', { bubbles: true ,detail: 'Event data' });
-        //   rowElems = document.getElementById("tableBody").children;
-
-        //   for (rowElem of rowElems) {
-        //     valueElem = rowElem.children[2].children[0];
-        //     console.log("Firing event for: " + valueElem);
-        //     valueElem.dispatchEvent(editButtonEvent);
-        //     // valueElem.children[2].outerHTML = "Edit";
-        //   }
-        // }
       </script>
     </div>
   </div>
