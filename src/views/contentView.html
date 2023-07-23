@@ -4,7 +4,7 @@
         <span class="text-blue-900 text-lg font-semibold "> {{.ApiName}}</span>
     </div>
     <div class="my-4">Some text content here</div>
-    <div class="tab-list" role="tablist">
+    <!-- <div class="tab-list" role="tablist">
         <button hx-get="/tab1" class="selected" role="tab" aria-selected="false"
             aria-controls="tab-content">Dev</button>
         <button hx-get="/tab2" role="tab" aria-selected="false" aria-controls="tab-content">NonProd</button>
@@ -15,7 +15,7 @@
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
-    </select>
+    </select> -->
     <div>
         API Settings
         {{template "apiSetting/settings" .}}
@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <button @click="settingChanged = !settingChanged; canChangeApi = !canChangeApi;"
+    <!-- <button @click="settingChanged = !settingChanged; canChangeApi = !canChangeApi;"
         class="bg-green-500 m-2 p-2 rounded-sm">Toggle SettingChanged</button>
-    <label x-text="settingChanged"></label>
+    <label x-text="settingChanged"></label> -->
 </div>
