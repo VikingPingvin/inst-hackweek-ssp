@@ -1,11 +1,24 @@
 {{define "apiSetting/settings"}}
 <div class="container mx-auto py-4">
     <div x-data="{ search: ''}" class="rounded-lg bg-white p-4 shadow-md">
-        <div class="mb-4 flex items-center">
-            <div class="w-2/3">
-                <input x-model="search" type="text" placeholder="Search"
-                    class="w-full rounded-lg border px-4 py-2 focus:outline-none" />
-                
+        <div class="mb-4 relative flex items-center">
+            <div class="w-2/3 relative pointer-events-none">
+                <!-- <div @click="$dispatch('searcharea-clear-event')"
+                    class="absolute hover:bg-blue-600 inset-y-0 z-1 right-0 flex items-center pr-3 pointer-events-none">
+                    <button class="bg-slate-900 hover:border-l-indigo-600">Mybutton</button>
+                </div> -->
+                <div class="absolute inset-y-0 z-40 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg @click="$dispatch('searcharea-clear-event'); console.log('Sending search clear event!')"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 pointer-events-auto hover:text-red-600 fill-current text-red-400">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" />
+                      </svg>
+                </div>
+                <div class="rounded-lg border border-slate-500 px-4 py-2">
+                    <input @searcharea-clear-event.window="search = ''" x-model="search" type="text" placeholder="Search"
+                        class="w-full pointer-events-auto focus:outline-none" />
+                </div>
+                <!-- <input @searcharea-clear-event="search ! ''" x-model="search" type="text" placeholder="Search"
+                    class="w-full rounded-lg border px-4 py-2 focus:outline-none" /> -->
             </div>
             <div class="w-1/3 text-right">
                 <button @click="$dispatch('editbutton-clicked-event'), console.log('Edit button clicked')"
