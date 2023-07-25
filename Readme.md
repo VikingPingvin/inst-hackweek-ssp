@@ -17,7 +17,7 @@ A study project to demonstrate a partial set of usecases for the Instructure Api
 ### Features
 - Use Alpine.Js to handle state
 - SSR with htmx together with Go-s `template` package to use HTML fragment views
-- Fetch list of available APIs on page load, which can be easily tied into server based authentication logic
+- Fetch list of available APIs on page load, based on Google OAuth2 login cookie
 - Click event on API buttons to fetch that particular APIs data from DB (local dummy data)
 - Edit button to toggle editable settings table
 - Submit button to submit table fields as Forms

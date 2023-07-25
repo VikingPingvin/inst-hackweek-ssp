@@ -14,7 +14,7 @@ func HandleContentView(w http.ResponseWriter, r *http.Request) {
 	authCookie, err := auth.GetAuthCookie(r)
 	if err != nil {
 		fmt.Printf("Error: %s\n", err.Error())
-		http.Error(w, "Failed to get auth cookie", http.StatusInternalServerError)
+		http.Redirect(w, r, "/", http.StatusUnauthorized)
 		return
 	}
 	err = auth.VerifyUserTokenOnline(&oauth2.Token{

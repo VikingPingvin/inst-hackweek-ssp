@@ -3,12 +3,21 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
 	auth "github.com/vikingpingvin/hackweek-ssp/internal/auth"
 	handlers "github.com/vikingpingvin/hackweek-ssp/internal/web/handlers"
 )
 
 func main() {
+	// init .env
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	auth.OauthConfig.ClientSecret = os.Getenv("GOOGLE_OAUTH2_CLIENT_SECRET")
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./src/views/mainPage.html")
 	})

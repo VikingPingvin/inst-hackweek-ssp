@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/golang-jwt/jwt/v5"
 	"golang.org/x/oauth2"
@@ -12,13 +13,14 @@ import (
 )
 
 const (
-	clientID     = "456160238646-pmp69tleqtm74bthvgo7p5p05cf9gqv2.apps.googleusercontent.com"
-	clientSecret = "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"
+	clientID = "456160238646-pmp69tleqtm74bthvgo7p5p05cf9gqv2.apps.googleusercontent.com"
 )
+
+var ClientSecret = os.Getenv("GOOGLE_OAUTH2_CLIENT_SECRET")
 
 var OauthConfig = oauth2.Config{
 	ClientID:     clientID,
-	ClientSecret: clientSecret,
+	ClientSecret: ClientSecret,
 	RedirectURL:  "http://localhost:8080/auth/callback",
 	Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email"},
 	Endpoint:     google.Endpoint,
