@@ -5,9 +5,28 @@ import (
 	"net/http"
 	"strconv"
 	"text/template"
+
+	"github.com/vikingpingvin/hackweek-ssp/internal/auth"
+	"golang.org/x/oauth2"
 )
 
 func HandleContentView(w http.ResponseWriter, r *http.Request) {
+	authCookie, err := auth.GetAuthCookie(r)
+	if err != nil {
+		fmt.Printf("Error: %s\n", err.Error())
+		http.Error(w, "Failed to get auth cookie", http.StatusInternalServerError)
+		return
+	}
+	err = auth.VerifyUserTokenOnline(&oauth2.Token{
+		AccessToken: authCookie.Value,
+	})
+	if err != nil {
+		fmt.Printf("Error: %s\n", err.Error())
+		http.Error(w, "Failed to verify user token", http.StatusInternalServerError)
+		return
+	}
+	fmt.Printf("AccessToken Online verification successful\n")
+
 	topicStr := r.URL.Query().Get("topic")
 	if topicStr == "" {
 		http.Error(w, "Missing topic parameter", http.StatusBadRequest)
@@ -41,5 +60,3 @@ func HandleContentView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
-
-

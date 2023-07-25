@@ -5,3 +5,9 @@ run-tailwind-cli:
 watch-run:
 	nodemon --watch './*' --watch './**/*' -e go,js,html --delay 1s --signal SIGTERM --exec 'go' run ./cmd/main.go
 
+build:
+	go build -o bin/ssp-webapp ./cmd/main.go
+
+build-release:
+	go build -ldflags="-s -w" -o bin/ssp-webapp ./cmd/main.go
+

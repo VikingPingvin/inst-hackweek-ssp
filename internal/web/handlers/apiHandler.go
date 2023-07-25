@@ -5,7 +5,9 @@ import (
 	"net/http"
 	"text/template"
 
+	"github.com/vikingpingvin/hackweek-ssp/internal/auth"
 	api "github.com/vikingpingvin/hackweek-ssp/internal/web/api"
+	"golang.org/x/oauth2"
 )
 
 type apiDataGetterFunc func() []api.ApiData
@@ -65,7 +67,15 @@ func GetApiById(id int) api.ApiData {
 }
 
 func HandleApiList(w http.ResponseWriter, r *http.Request) {
-	apisData := getApis(localDummyApiGetterFunc)
+	var apisData []api.ApiData
+	if cookie, err := auth.GetAuthCookie(r); err == nil {
+		auth.VerifyUserTokenOnline(&oauth2.Token{
+			AccessToken: cookie.Value,
+		})
+		apisData = getApis(localDummyApiGetterFunc)
+	} else {
+		apisData = []api.ApiData{}
+	}
 
 	tmpl, err := template.ParseFiles("./src/views/sidebar/apiTopicButton.html")
 	if err != nil {
@@ -85,14 +95,19 @@ func HandleApiList(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleApiContent(w http.ResponseWriter, r *http.Request) {
-	apiId := r.URL.Path[len("/api/"):]
-	fmt.Printf("Handling API setting change for api-id: %s\n", apiId)
+	if r.Method == http.MethodPost || r.Method == http.MethodPut {
 
-	r.ParseForm()
+		apiId := r.URL.Path[len("/api/"):]
+		fmt.Printf("Handling API setting change for api-id: %s\n", apiId)
 
-	for key, value := range r.Form {
-		fmt.Printf("   Key: %s, Value: %s\n", key, value)
+		r.ParseForm()
+
+		for key, value := range r.Form {
+			fmt.Printf("   Key: %s, Value: %s\n", key, value)
+		}
+
+		w.WriteHeader(http.StatusOK)
+	} else if r.Method == http.MethodGet {
+		fmt.Printf(("Handling GET for api: %s\n"), r.URL.Path[len("/api/"):])
 	}
-
-	w.WriteHeader(http.StatusOK)
 }

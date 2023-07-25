@@ -12,7 +12,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
-  <!-- <link href="./dist/output.css" rel="stylesheet"> -->
+  <script src="https://accounts.google.com/gsi/client" async></script>
 </head>
 
 <body>
@@ -29,6 +29,16 @@
           Admin Flag
         </div>
         <div class="relative">
+          <!-- Google Login -->
+          <div id="g_id_onload"
+            data-client_id="456160238646-pmp69tleqtm74bthvgo7p5p05cf9gqv2.apps.googleusercontent.com"
+            data-context="signin" data-ux_mode="popup" data-login_uri="/auth/login"
+            data-auto_prompt="false">
+          </div>
+          <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+            data-text="signin_with" data-size="large" data-logo_alignment="left">
+          </div>
+          <!-- Misc. -->
           <button class="rounded-md bg-gray-700 px-4 py-2 text-white hover:bg-gray-600">Dropdown</button>
           <div class="absolute right-0 mt-2 hidden w-48 rounded-md bg-white py-2 shadow-lg">
             <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Option 1</a>
@@ -50,10 +60,10 @@
 
       <!-- Content Area -->
       <div id="mainContent" class="flex-1 p-4">
-        <h1 class="mb-4 text-2xl font-bold">Content</h1>
+        <h1 class="mb-4 blur-md justify-center text-2xl font-bold">Placeholder Content</h1>
       </div>
       <script>
-        function triggerApiChangeEvent(event){
+        function triggerApiChangeEvent(event) {
           const triggerClickEvent = new CustomEvent('triggerClickEventFired', { detail: 'Event data' });
           event.target.dispatchEvent(triggerClickEvent);
         }
