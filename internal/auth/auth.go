@@ -60,7 +60,7 @@ func HandleCallback(w http.ResponseWriter, r *http.Request) {
 	}
 	http.SetCookie(w, &loginCookie)
 	// w.Write([]byte("Login successful"))
-	fmt.Printf("Cookie header: %s", w.Header().Get("Set-Cookie"))
+	fmt.Printf("Cookie header: %s\n", w.Header().Get("Set-Cookie"))
 
 	http.Redirect(w, r, "/", http.StatusFound)
 }
@@ -112,17 +112,19 @@ func VerifyUserTokenOnline(token *oauth2.Token) error {
 
 func VerifyUserTokenOffline(token *oauth2.Token) error {
 
-	tokenParsed, err := jwt.Parse(token.AccessToken, nil)
+	if token == nil {
+		return fmt.Errorf("token is nil\n")
+	}
+	idToken := token.Extra("id_token")
+	if idToken == "" || idToken == nil {
+		return fmt.Errorf("id_token is empty\n")
+	}
+	jwtParsed, err := jwt.Parse(idToken.(string), nil)
 	if err != nil {
-		return fmt.Errorf("Failed to parse token: %s", err)
+		return fmt.Errorf("Failed to parse jwt: %s", err)
 	}
-
-	if !tokenParsed.Valid {
-		return fmt.Errorf("access token not valid")
-	}
-
-	if tokenParsed.Claims.(jwt.MapClaims)["aud"] != clientID {
-		return fmt.Errorf("audience not valid")
+	if jwtParsed.Claims.(jwt.MapClaims)["aud"] != clientID {
+		return fmt.Errorf("audience not valid\n")
 	}
 
 	return nil

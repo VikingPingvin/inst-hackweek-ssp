@@ -5,7 +5,6 @@ A study project to demonstrate a partial set of usecases for the Instructure Api
 - TailWindCSS
 - Alpine.Js
 - Golang backend
-- TODO: Redis/Elasticache database
 
 ### Motivation:
 

@@ -17,15 +17,23 @@ func HandleContentView(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusUnauthorized)
 		return
 	}
-	err = auth.VerifyUserTokenOnline(&oauth2.Token{
+	err = auth.VerifyUserTokenOffline(&oauth2.Token{
 		AccessToken: authCookie.Value,
 	})
 	if err != nil {
-		fmt.Printf("Error: %s\n", err.Error())
-		http.Error(w, "Failed to verify user token", http.StatusInternalServerError)
-		return
+		// fmt.Printf("AccessToken Offline verification Error: %s\n", err.Error())
+		// http.Error(w, "Failed to verify user token", http.StatusInternalServerError)
+		err = auth.VerifyUserTokenOnline(&oauth2.Token{
+			AccessToken: authCookie.Value,
+		})
+		if err != nil {
+			fmt.Printf("Error: %s\n", err.Error())git dif
+			http.Error(w, "Failed to verify user token", http.StatusInternalServerError)
+			return
+		}
 	}
-	fmt.Printf("AccessToken Online verification successful\n")
+
+	// fmt.Printf("AccessToken Online verification successful\n")
 
 	topicStr := r.URL.Query().Get("topic")
 	if topicStr == "" {
